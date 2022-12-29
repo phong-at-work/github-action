@@ -1,0 +1,14 @@
+name: Create release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  release:
+    name: Deploy release
+    runs-on: windows-latest
+    steps:
+      - name: Node version
+        run: node -v
+        shell: bash
