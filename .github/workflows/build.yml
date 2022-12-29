@@ -1,0 +1,23 @@
+name: Auto build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  clone-md-book:
+    name: Clone md book
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          repository: rust-lang/mdBook
+          path: my-tools
+      - name: Install hub
+        run: ci/install-hub.sh ubuntu-latest
+        shell: bash
+      - name: Install Rust
+        run: ci/install-rust.sh stable aarch64-unknown-linux-musl
+        shell: bash
